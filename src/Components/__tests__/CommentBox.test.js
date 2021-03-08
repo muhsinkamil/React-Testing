@@ -1,12 +1,16 @@
 import React from "react"
+import Root from "Root"
 import CommentBox from "Components/CommentBox"
 import { mount } from "enzyme"
-import { unmountComponentAtNode } from "react-dom"
 
 let wrapped
 
 beforeEach(() => {
-  wrapped = mount(<CommentBox />)
+  wrapped = mount(
+    <Root>
+      <CommentBox />
+    </Root>
+  )
 })
 
 afterEach(() => {

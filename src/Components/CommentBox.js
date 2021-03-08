@@ -7,7 +7,7 @@ const CommentBox = ({ saveComment }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    saveComment(e.target.value)
+    saveComment(comment)
     setComment("")
   }
 
@@ -24,8 +24,4 @@ const CommentBox = ({ saveComment }) => {
   )
 }
 
-const mapStateToProps = (state) => {
-  return state
-}
-
-export default connect(mapStateToProps, { saveComment })(CommentBox)
+export default connect(null, { saveComment })(CommentBox)
