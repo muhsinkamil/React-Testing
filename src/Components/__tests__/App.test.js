@@ -1,27 +1,19 @@
+import { shallow } from "enzyme/build"
 import React from "react"
-import ReactDOM from "react-dom"
-import App from "../App"
-import CommentBox from "../CommentBox"
+import App from "Components/App"
+import CommentBox from "Components/CommentBox"
+import CommentList from "Components/CommentList"
 
-test("shows hello world", () => {
-  // Creating div on JSDOM
-  const div = document.createElement("div")
+let wrapped
 
-  //   Render App component on JSDOM div. This JSDOM is floating in Jest terminal not in any browser setup
-  ReactDOM.render(<App />, div)
-
-  //   Expect div to contain "Hello world" as its text
-  expect(div.innerHTML).toContain("Hello world")
-
-  //   Unmount/cleanup JSDOM div as our test cases have finished
-  ReactDOM.unmountComponentAtNode(div)
+beforeEach(() => {
+  wrapped = shallow(<App />)
 })
 
-test("shows comment Box", () => {
-  const div = document.createElement("div")
-  ReactDOM.render(<App />, div)
+it("has an instance of comment box", () => {
+  expect(wrapped.find(CommentBox).length).toEqual(1)
+})
 
-  expect(div.innerHTML).toContain("Comment Box")
-
-  ReactDOM.unmountComponentAtNode(div)
+it("has an instance of Comment List", () => {
+  expect(wrapped.find(CommentList).length).toEqual(1)
 })
