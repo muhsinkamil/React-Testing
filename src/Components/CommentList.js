@@ -3,7 +3,11 @@ import { connect } from "react-redux"
 
 const CommentList = ({ comments }) => {
   return comments.map((comment, index) => {
-    return <div key={index}>{comment}</div>
+    return (
+      <div key={index}>
+        {index + 1} - {comment}
+      </div>
+    )
   })
 }
 

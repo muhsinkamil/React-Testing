@@ -21,7 +21,8 @@ it("should have a text area and button", () => {
   //   console.log(wrapped.find("textarea").length)
 
   expect(wrapped.find("textarea").length).toEqual(1)
-  expect(wrapped.find("button").length).toEqual(1)
+  expect(wrapped.find(`[data-test='submit-button']`).length).toEqual(1)
+  expect(wrapped.find(`[data-test='fetch-button']`).length).toEqual(1)
 })
 
 describe("Testing textarea", () => {

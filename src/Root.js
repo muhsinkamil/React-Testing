@@ -1,14 +1,19 @@
 import React from "react"
-import { createStore, compose } from "redux"
+import { createStore, applyMiddleware, compose } from "redux"
 import { Provider } from "react-redux"
+import reduxThunk from "redux-thunk"
 import reducers from "Reducers"
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-const store = createStore(reducers, composeEnhancers())
+const Root = ({ children, initialState = {} }) => {
+  const store = createStore(
+    reducers,
+    initialState,
+    composeEnhancers(applyMiddleware(reduxThunk))
+  )
 
-const Root = (props) => {
-  return <Provider store={store}>{props.children}</Provider>
+  return <Provider store={store}>{children}</Provider>
 }
 
 export default Root

@@ -6,11 +6,27 @@ import Root from "Root"
 let wrapped
 
 beforeEach(() => {
+  const initialState = {
+    comments: ["comment1", "comment2", "comment3"],
+  }
+
   wrapped = mount(
-    <Root>
+    <Root initialState={initialState}>
       <CommentList />
     </Root>
   )
 })
 
-it("should have a div for every comment", () => {})
+afterEach(() => {
+  wrapped.unmount()
+})
+
+it("should have a div for every comment", () => {
+  expect(wrapped.find("div").length).toEqual(3)
+})
+
+it("shows text for each comment", () => {
+  expect(wrapped.render().text()).toContain("comment1")
+  expect(wrapped.render().text()).toContain("comment2")
+  expect(wrapped.render().text()).toContain("comment3")
+})
